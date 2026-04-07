@@ -325,7 +325,7 @@ unsigned floatScale2(unsigned uf)
 {
   unsigned fs2 = 0;
   unsigned index = (uf >> 23) & (0xff);
-  if (index != 255 && (uf << 1) != 0 && index != 0)
+  if (index != 255 && index != 0)
   {
     fs2 = ((index + 1) << 23) + (uf & 0x807fffff);
   }
@@ -357,13 +357,10 @@ unsigned floatScale2(unsigned uf)
 int floatFloat2Int(unsigned uf)
 {
   unsigned index = (uf >> 23) & (0xff);
-  unsigned interg = 0;
-  if (index == 0)
-  {
-    
-  }
-  
-  return 2;
+  unsigned exponent = (uf & 0x7fffff);
+  unsigned inter = 0;
+
+  return inter;
 }
 /*
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
