@@ -328,6 +328,10 @@ unsigned floatScale2(unsigned uf)
   if (index != 255 && index != 0)
   {
     fs2 = ((index + 1) << 23) + (uf & 0x807fffff);
+    if (index + 1 == 255)
+    {
+      fs2 = fs2 & 0xff800000;
+    }
   }
   else
   {
