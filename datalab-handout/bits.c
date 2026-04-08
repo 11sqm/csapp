@@ -413,7 +413,14 @@ unsigned floatPower2(int x)
   unsigned fp2 = 0;
   if (x >= -149 && x <= 128)
   {
-    
+    if (x >= -126)
+    {
+      int index = 127 + x;
+      fp2 = index << 23;
+    } else{
+      int shift = 149 + x;
+      fp2 = 1 << shift;
+    }
   }
   else if (x < -149)
   {
