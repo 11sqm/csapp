@@ -146,7 +146,7 @@ int bitXor(int x, int y)
   /*
    * bitXor - return x^y
    */
-  return (x & ~y) | (~x & y);
+  return ~(~(~x & y) & ~(x & ~y));
 }
 /*
  * tmin - return minimum two's complement integer
@@ -410,5 +410,19 @@ int floatFloat2Int(unsigned uf)
  */
 unsigned floatPower2(int x)
 {
-  return 2;
+  unsigned fp2 = 0;
+  if (x >= -149 && x <= 128)
+  {
+    
+  }
+  else if (x < -149)
+  {
+    fp2 = 0;
+  }
+  else
+  {
+    fp2 = 0x7f800000;
+  }
+
+  return fp2;
 }
