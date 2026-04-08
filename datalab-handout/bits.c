@@ -363,7 +363,36 @@ int floatFloat2Int(unsigned uf)
   unsigned index = (uf >> 23) & (0xff);
   unsigned exponent = (uf & 0x7fffff);
   unsigned inter = 0;
+  if (index >= 1 && index <= 254)
+  {
+    if (index >= 150 && index <= 157)
+    {
+      inter = (0x800000 + exponent) << (index - 150);
+    }
+    else if (index > 157)
+    {
+      inter = 0x80000000;
+    }
+    else if (index >= 127)
+    {
+      inter = (0x800000 + exponent) >> (150 - index);
+    }
+    else
+      inter = 0;
+  }
+  else
+  {
+    if (index == 0)
+    {
+      inter = 0;
+    }
+    else
+    {
+      inter = 0x80000000;
+    }
+  }
 
+  inter = (((~(uf >> 31)) + 1) ^ inter) + (uf >> 31);
   return inter;
 }
 /*
