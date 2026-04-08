@@ -146,7 +146,7 @@ int bitXor(int x, int y)
   /*
    * bitXor - return x^y
    */
-  return ~((x & ~y) & (~x & y));
+  return (x & ~y) | (~x & y);
 }
 /*
  * tmin - return minimum two's complement integer
